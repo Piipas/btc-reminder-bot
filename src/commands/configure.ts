@@ -12,8 +12,13 @@ export const configureCmd = async (interaction: ChatInputCommandInteraction) => 
   await channel.send("Hi, I will notify about BTC updates in this channel!");
 
   await db.guild.upsert({
-    where: { guild_id: interaction.guild?.id },
-    update: { guild_id: interaction.guild?.id, target: Number(target) },
-    create: { guild_id: interaction.guild?.id as string, target: Number(target), channel_id: channel.id },
+    where: { guild_user: { guild_id: interaction.guild?.id as string, user: interaction.user.username } },
+    update: { target: Number(target) },
+    create: {
+      guild_id: interaction.guild?.id as string,
+      target: Number(target),
+      channel_id: channel.id,
+      user: interaction.user.id,
+    },
   });
 };

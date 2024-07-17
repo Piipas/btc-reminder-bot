@@ -9,7 +9,10 @@ datasource db {
 
 model Guild {
     id         String @id @default(uuid())
-    guild_id   String @unique
+    guild_id   String
     channel_id String
     target     Int
+    user       String
+
+    @@unique([guild_id, user], name: "guild_user")
 }

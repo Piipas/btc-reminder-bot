@@ -51,7 +51,9 @@ app.post("/send-message/:value", async (req, res) => {
       const channel = await server.channels.fetch(guild.channel_id);
 
       if (channel && channel.isTextBased()) {
-        await channel.send(`BTC has reached your target $\`${guild.target}\`, and the current value is $\`${value}\``);
+        await channel.send(
+          `Hey <@${guild.user}> wake up, BTC has reached your target \`$${guild.target}\`, and the current value is \`$${value}\``,
+        );
       }
     });
     res.status(200).send("Message sent successfully");
