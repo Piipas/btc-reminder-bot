@@ -5,6 +5,8 @@ import { client } from "./src/config/discord-client";
 import { configureCmd } from "./src/commands/configure";
 import express from "express";
 import { Guild } from "@prisma/client";
+import { convert } from "./src/commands/convert";
+import { help } from "./src/commands/help";
 
 client.once("ready", async () => {
   console.log(`Logged in as ${client.user?.tag}!`);
@@ -31,6 +33,12 @@ client.on("interactionCreate", async (interaction: Interaction) => {
     switch (commandName) {
       case "configure":
         configureCmd(interaction as ChatInputCommandInteraction);
+        break;
+      case "convert":
+        convert(interaction as ChatInputCommandInteraction);
+        break;
+      case "help":
+        help(interaction as ChatInputCommandInteraction);
         break;
     }
   } catch (error) {

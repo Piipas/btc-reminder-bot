@@ -4,7 +4,7 @@ import { db } from "../config/prisma-client";
 export const configureCmd = async (interaction: ChatInputCommandInteraction) => {
   const { options } = interaction;
 
-  const target = options.getString("target"),
+  const target = options.getNumber("target"),
     channel = options.getChannel("channel") as TextChannel;
 
   await interaction.reply(":eggplant:");
