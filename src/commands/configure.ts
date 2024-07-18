@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, Interaction, TextChannel } from "discord.js";
+import { ChatInputCommandInteraction, TextChannel } from "discord.js";
 import { db } from "../config/prisma-client";
 
 export const configureCmd = async (interaction: ChatInputCommandInteraction) => {
@@ -7,12 +7,14 @@ export const configureCmd = async (interaction: ChatInputCommandInteraction) => 
   const target = options.getString("target"),
     channel = options.getChannel("channel") as TextChannel;
 
-  await interaction.reply(`The bot is configured successfully, you will be notified once the BTC reaches $${target}.`);
+  await interaction.reply(":eggplant:");
 
-  await channel.send("Hi, I will notify about BTC updates in this channel!");
+  await channel.send(
+    `Hi <@${interaction.user.id}>, your notifications settings has been updated. I will notify you here once the BTC reaches \`$${target}\``,
+  );
 
   await db.guild.upsert({
-    where: { guild_user: { guild_id: interaction.guild?.id as string, user: interaction.user.username } },
+    where: { guild_user: { guild_id: interaction.guild?.id as string, user: interaction.user.id } },
     update: { target: Number(target) },
     create: {
       guild_id: interaction.guild?.id as string,

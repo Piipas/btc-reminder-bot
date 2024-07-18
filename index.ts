@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction, Interaction, REST, Routes, TextChannel } from "discord.js";
+import { ChatInputCommandInteraction, Interaction, REST, Routes } from "discord.js";
 import { env } from "./src/config/init-envalid";
 import { commands } from "./src/config/commands";
 import { client } from "./src/config/discord-client";
