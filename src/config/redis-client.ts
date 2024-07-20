@@ -1,9 +1,10 @@
 import { createClient, RedisClientType } from "redis";
+import { env } from "./init-envalid";
 
-const redis: RedisClientType = createClient();
+const redis: any = createClient({ url: env.REDIS_URL });
 
 // Error handling
-redis.on("error", (err) => {
+redis.on("error", (err: any) => {
   console.error("Redis error:", err);
 });
 
