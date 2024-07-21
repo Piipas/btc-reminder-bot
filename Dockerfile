@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:20-alpine
 
 # create workspace
 RUN mkdir -p /usr/src/bot
