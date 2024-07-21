@@ -24,4 +24,4 @@ RUN pnpm run migrate
 RUN pnpm run build
 
 # final command
-CMD ["node" "dist/index.js"]
+CMD ["node", "dist/index.js"]
