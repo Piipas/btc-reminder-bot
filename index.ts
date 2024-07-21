@@ -8,6 +8,8 @@ import { Guild } from "@prisma/client";
 import { convert } from "./src/commands/convert";
 import { help } from "./src/commands/help";
 
+const app = express();
+
 client.once("ready", async () => {
   console.log(`Logged in as ${client.user?.tag}!`);
 
@@ -45,8 +47,6 @@ client.on("interactionCreate", async (interaction: Interaction) => {
     console.log(error);
   }
 });
-
-const app = express();
 
 app.use(express.json());
 app.post("/send-message/:value", async (req, res) => {

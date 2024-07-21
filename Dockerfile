@@ -1,20 +1,23 @@
 FROM node:latest
 
+# create workspace
 RUN mkdir -p /usr/src/bot
 WORKDIR /usr/src/bot
 
 # install pnpm globally
 RUN npm install -g pnpm
 
+# copy app files to workspace
 COPY . /usr/src/bot
 
 # install dependencies with frozen lockfile
 RUN pnpm install --frozen-lockfile
 
 # migrate updates to database
-# RUN pnpm run deploy
+RUN pnpm run migrate
 
 # build the app files
 RUN pnpm run build
 
-CMD node --env-file=.env dist/index.js
+# final command
+CMD ["node" "dist/index.js"]
