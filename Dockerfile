@@ -15,6 +15,7 @@ RUN pnpm install --frozen-lockfile
 
 # build time env variables
 ARG DIRECT_URL
+ARG DATABASE_URL
 
 # migrate updates to database
 RUN pnpm run migrate
