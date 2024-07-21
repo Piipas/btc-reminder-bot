@@ -23,5 +23,7 @@ RUN pnpm run migrate
 # build the app files
 RUN pnpm run build
 
+EXPOSE 80
+
 # final command
 CMD ["node", "dist/index.js"]
